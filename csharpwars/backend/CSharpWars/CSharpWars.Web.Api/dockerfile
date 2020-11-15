@@ -1,0 +1,20 @@
+﻿FROM mcr.microsoft.com/dotnet/aspnet:5.0
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the app
+COPY bin/Release/net5.0/publish /app
+
+EXPOSE 5000
+
+ENV TZ=Europe/Brussels
+ENV KEY_VAULT=...
+ENV CLIENT_ID=...
+ENV CLIENT_SECRET=...
+ENV ARENA_SIZE=...
+ENV VALIDATION_HOST=...
+ENV BOT_DEPLOYMENT_LIMIT=1
+
+# Start the app
+ENTRYPOINT ["dotnet", "CSharpWars.Web.Api.dll"]

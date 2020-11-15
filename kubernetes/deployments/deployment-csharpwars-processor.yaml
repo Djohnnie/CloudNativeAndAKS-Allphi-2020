@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: csharpwars-processor
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: csharpwars-processor
+  template:
+    metadata:
+      labels:
+        app: csharpwars-processor
+    spec:
+      containers:
+      - name: csharpwars-processor
+        image: csharpwars.azurecr.io/csharpwars-processor:latest
+        env:
+          - name: KEY_VAULT
+            value: "https://akv-csharpwars.vault.azure.net/"
+          - name: CLIENT_ID
+            valueFrom:
+              secretKeyRef:
+                name: secret-keyvault
+                key: client-id
+          - name: CLIENT_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: secret-keyvault
+                key: client-secret
+          - name: ARENA_SIZE
+            value: "10"
+          - name: ELASTIC_HOST
+            value: "http://unknown"
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "1000m"

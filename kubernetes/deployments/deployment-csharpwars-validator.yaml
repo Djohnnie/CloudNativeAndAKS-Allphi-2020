@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: csharpwars-validator
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: csharpwars-validator
+  template:
+    metadata:
+      labels:
+        app: csharpwars-validator
+    spec:
+      containers:
+      - name: csharpwars-validator
+        image: csharpwars.azurecr.io/csharpwars-validator:latest        
+        resources:
+          limits:
+            memory: "500Mi"
+            cpu: "1000m"
+        ports:
+        - containerPort: 5000

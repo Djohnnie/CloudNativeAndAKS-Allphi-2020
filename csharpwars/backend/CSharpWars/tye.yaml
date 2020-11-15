@@ -1,0 +1,54 @@
+name: CSharpWars
+services:
+- name: cshwarpwars-webapi
+  project: CSharpWars.Web.Api/CSharpWars.Web.Api.csproj
+  env:
+    - name: TYE
+      value: YES
+    - name: KEY_VAULT
+      value: https://akv-csharpwars.vault.azure.net/
+    - name: CLIENT_ID
+      value: 068d9105-bca3-4699-9e8e-50e79abca061
+    - name: CLIENT_SECRET
+      value: Rh3MdDF3lJY6-Kx.FD68WQtf1A-308FDF.
+    - name: ARENA_SIZE
+      value: 10
+- name: cshwarpwars-web
+  project: CSharpWars.Web/CSharpWars.Web.csproj
+  env:
+    - name: TYE
+      value: YES
+    - name: KEY_VAULT
+      value: https://akv-csharpwars.vault.azure.net/
+    - name: CLIENT_ID
+      value: 068d9105-bca3-4699-9e8e-50e79abca061
+    - name: CLIENT_SECRET
+      value: Rh3MdDF3lJY6-Kx.FD68WQtf1A-308FDF.
+    - name: ARENA_SIZE
+      value: 10
+    - name: BOT_DEPLOYMENT_LIMIT
+      value: 1
+    - name: POINTS_LIMIT
+      value: 200
+    - name: ENABLE_CUSTOM_PLAY
+      value: True
+    - name: ENABLE_TEMPLATE_PLAY
+      value: True
+- name: cshwarpwars-validator
+  project: CSharpWars.Validator/CSharpWars.Validator.csproj
+  env:
+    - name: TYE
+      value: YES
+- name: cshwarpwars-processor
+  project: CSharpWars.Processor/CSharpWars.Processor.csproj
+  env:
+    - name: KEY_VAULT
+      value: https://akv-csharpwars.vault.azure.net/
+    - name: CLIENT_ID
+      value: 068d9105-bca3-4699-9e8e-50e79abca061
+    - name: CLIENT_SECRET
+      value: Rh3MdDF3lJY6-Kx.FD68WQtf1A-308FDF.
+    - name: ARENA_SIZE
+      value: 10
+    - name: ELASTIC_HOST
+      value: http://192.168.10.2:9200

@@ -1,0 +1,12 @@
+﻿FROM mcr.microsoft.com/dotnet/aspnet:5.0
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the app
+COPY bin/Release/net5.0/publish /app
+
+ENV TZ=Europe/Brussels
+
+# Start the app
+ENTRYPOINT ["dotnet", "CSharpWars.Validator.dll"]
